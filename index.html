@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DOGGLU — умный дневник здоровья</title>
+<style>
+:root{--ink:#18383d;--muted:#71888d;--teal:#087f91;--mint:#75c6b0;--pale:#e9f7f4;--bg:#f5f9f9;--white:#fff;--line:#e1eeee;--shadow:0 16px 45px rgba(25,62,67,.08)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+.auth{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;background:#f5faf9}.authVisual{padding:7vw;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(145deg,#dff5f0,#effaf8 60%,#d8eef2)}.brand{font-weight:900;font-size:31px;letter-spacing:-1.5px;color:var(--teal)}.brand i{font-style:normal;color:#55aa98}.tagline{font-size:48px;line-height:1.04;max-width:620px;margin:35px 0 20px;letter-spacing:-2px}.authDog{font-size:150px;filter:drop-shadow(0 18px 18px rgba(0,0,0,.08));margin-top:25px}.authCard{display:flex;align-items:center;justify-content:center;padding:30px}.login{width:min(440px,100%);background:#fff;padding:42px;border-radius:30px;box-shadow:var(--shadow)}.login h1{margin:0 0 8px;font-size:30px}.login p{color:var(--muted)}.field{margin:15px 0}.field label{font-size:13px;font-weight:700;color:#567075;display:block;margin-bottom:7px}.field input,.field select,.field textarea{width:100%;padding:13px 14px;border:1px solid #d8e7e7;border-radius:13px;background:#fbfdfd;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:#82c9c1;box-shadow:0 0 0 3px #75c6b01a}.primary{background:var(--teal);color:white;border:0;border-radius:13px;padding:13px 18px;font-weight:800}.secondary{background:#eaf5f4;color:var(--teal);border:0;border-radius:13px;padding:12px 16px;font-weight:750}.ghost{background:transparent;border:0;color:var(--muted)}.app{display:flex;min-height:100vh}.side{width:255px;background:#fff;border-right:1px solid var(--line);padding:25px 17px;position:fixed;height:100vh;z-index:5}.side .brand{padding:0 13px 30px}.nav button{width:100%;background:transparent;border:0;text-align:left;padding:13px 14px;border-radius:13px;color:#60777c;margin:3px 0;font-weight:650}.nav button.active,.nav button:hover{background:var(--pale);color:var(--teal)}.sideBottom{position:absolute;bottom:22px;left:18px;right:18px}.profileMini{background:#f4faf9;border-radius:17px;padding:12px;display:flex;align-items:center;gap:10px}.miniDog{width:42px;height:42px;border-radius:13px;background:#d9eeea;display:grid;place-items:center;font-size:25px}.main{margin-left:255px;flex:1;padding:32px;max-width:1450px}.top{display:flex;justify-content:space-between;align-items:flex-end;gap:15px;margin-bottom:24px}.eyebrow{color:var(--teal);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.08em}.top h1{font-size:34px;letter-spacing:-1px;margin:5px 0 0}.muted{color:var(--muted)}.page{display:none}.page.active{display:block}.hero{padding:28px;background:linear-gradient(135deg,#e1f5f1,#f6fbfa);border:1px solid #d9eeeb;border-radius:25px;display:flex;justify-content:space-between;align-items:center;gap:20px;box-shadow:var(--shadow)}.dogInfo{display:flex;align-items:center;gap:17px}.dogAvatar{width:84px;height:84px;border-radius:25px;background:#d6eee9;display:grid;place-items:center;font-size:48px}.hero h2{margin:0 0 5px;font-size:27px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:17px 0}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:21px;box-shadow:var(--shadow)}.stat .label{font-size:12px;color:var(--muted)}.stat strong{display:block;font-size:27px;margin-top:8px}.two{display:grid;grid-template-columns:1.15fr .85fr;gap:17px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.check{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #edf2f2}.check:last-child{border:0}.ok{color:#2b987a}.warn{color:#d28a32}.notice{background:#fff7e8;border:1px solid #f1dfbd;padding:14px;border-radius:13px;color:#735c35}.actions{display:flex;gap:9px;flex-wrap:wrap}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.entry{display:flex;justify-content:space-between;gap:15px;padding:14px 0;border-bottom:1px solid #edf2f2}.entry:last-child{border:0}.pill{display:inline-flex;align-items:center;padding:5px 9px;background:#e8f4f2;color:var(--teal);border-radius:999px;font-size:12px;font-weight:700}.chartWrap{height:330px;position:relative}.chartWrap canvas{width:100%;height:100%}.dogOptions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.dogChoice{background:#f7fbfa;border:2px solid transparent;border-radius:17px;padding:14px;text-align:center}.dogChoice.selected{border-color:#58b09e;background:#e8f5f2}.dogEmoji{font-size:50px;display:block;margin-bottom:5px}.dogChoice small{color:var(--muted)}.profileHero{display:flex;align-items:center;gap:20px}.bigDog{width:120px;height:120px;border-radius:34px;background:#e1f3ef;display:grid;place-items:center;font-size:72px}.range{display:flex;gap:10px;align-items:center}.range input{flex:1}.toast{position:fixed;right:24px;bottom:24px;background:#18383d;color:#fff;padding:13px 17px;border-radius:13px;box-shadow:var(--shadow);opacity:0;transform:translateY(10px);transition:.25s;z-index:20}.toast.show{opacity:1;transform:none}.modalBack{position:fixed;inset:0;background:#17383d55;display:flex;align-items:center;justify-content:center;z-index:30;padding:20px}.modal{background:#fff;border-radius:25px;padding:26px;width:min(560px,100%);box-shadow:0 25px 80px #17383d33}.reportPrint{background:white}.danger{color:#bd665b}
+@media(max-width:900px){.side{width:210px}.main{margin-left:210px}.grid{grid-template-columns:1fr 1fr}.two,.three{grid-template-columns:1fr}.dogOptions{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){.auth{grid-template-columns:1fr}.authVisual{display:none}.side{position:static;width:100%;height:auto}.app{display:block}.main{margin-left:0;padding:18px}.sideBottom{display:none}.nav{display:flex;overflow:auto}.nav button{min-width:max-content}.grid,.formgrid{grid-template-columns:1fr}.hero{align-items:flex-start;flex-direction:column}}
+@media print{.side,.top button,.actions,.noPrint{display:none!important}.main{margin:0;padding:0}.page{display:none!important}#report.page{display:block!important}.card{box-shadow:none}}
+</style>
+</head>
+<body>
+<div id="auth" class="auth">
+  <div class="authVisual">
+    <div class="brand">DOG<span>GLU</span> 🐾</div>
+    <div class="tagline">Забота о диабете начинается с понятного дневника.</div>
+    <div class="muted" style="font-size:17px;max-width:520px">Все ежедневные наблюдения — в одном месте. Удобно для владельца и понятно ветеринарному врачу.</div>
+    <div class="authDog">🐕</div>
+  </div>
+  <div class="authCard">
+    <div class="login">
+      <div class="brand" style="font-size:24px">DOGGLU</div>
+      <h1>Добро пожаловать</h1>
+      <p>Войдите в демо-кабинет, чтобы продолжить.</p>
+      <div class="field"><label>Имя владельца</label><input id="loginName" placeholder="Например, Камилла"></div>
+      <div class="field"><label>Email</label><input id="loginEmail" type="email" placeholder="name@example.com"></div>
+      <button class="primary" style="width:100%;margin-top:8px" onclick="login()">Войти в DOGGLU →</button>
+      <p style="font-size:12px;margin-top:17px">Демо-режим: данные хранятся в браузере этого устройства.</p>
+    </div>
+  </div>
+</div>
+
+<div id="app" class="app hidden">
+<aside class="side">
+  <div class="brand">DOG<span>GLU</span> 🐾</div>
+  <nav class="nav">
+    <button class="active" data-page="home">⌂ &nbsp; Главная</button>
+    <button data-page="diary">☷ &nbsp; Дневник</button>
+    <button data-page="glucose">⌁ &nbsp; Глюкоза</button>
+    <button data-page="symptoms">♡ &nbsp; Симптомы</button>
+    <button data-page="profile">🐾 &nbsp; Профиль собаки</button>
+    <button data-page="report">▣ &nbsp; Отчёт врачу</button>
+  </nav>
+  <div class="sideBottom">
+    <div class="profileMini"><div class="miniDog" id="miniDog">🐕</div><div><b id="miniName">Барни</b><div class="muted" style="font-size:12px">мой питомец</div></div></div>
+    <button class="ghost" style="margin-top:13px;width:100%;text-align:left" onclick="logout()">↪ Выйти</button>
+  </div>
+</aside>
+
+<main class="main">
+<section id="home" class="page active">
+<div class="top"><div><div class="eyebrow">Личный кабинет</div><h1>Добрый день, <span id="owner">владелец</span> 👋</h1></div><span class="pill" id="today"></span></div>
+<div class="hero"><div class="dogInfo"><div class="dogAvatar" id="heroDog">🐕</div><div><h2 id="heroName">Барни</h2><div class="muted" id="heroMeta">8 лет · 18,4 кг · сахарный диабет</div><div style="margin-top:9px"><span class="pill">● Наблюдение ведётся</span></div></div></div><button class="primary" onclick="showPage('diary')">Открыть дневник</button></div>
+<div class="grid">
+<div class="card stat"><div class="label">Последняя глюкоза</div><strong id="homeGlucose">—</strong><span class="muted">ммоль/л</span></div>
+<div class="card stat"><div class="label">Вес</div><strong id="homeWeight">18,4</strong><span class="muted">кг</span></div>
+<div class="card stat"><div class="label">Сегодня отмечено</div><strong id="homeProgress">3/5</strong><span class="muted">пунктов</span></div>
+<div class="card stat"><div class="label">Последний симптом</div><strong id="homeSymptom" style="font-size:19px">Норма</strong><span class="muted">по дневнику</span></div>
+</div>
+<div class="two">
+<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">Сегодня</h3><span class="muted">5 задач</span></div>
+<div class="check"><span>🍗 Питание</span><b class="ok">✓ Выполнено</b></div><div class="check"><span>💉 Назначенная терапия</span><b class="ok">✓ Выполнено</b></div><div class="check"><span>🚶 Прогулка</span><b class="ok">✓ Выполнено</b></div><div class="check"><span>🩺 Самочувствие</span><b class="warn" id="taskSymptom">⚠ Заполнить</b></div><div class="check"><span>📊 Измерение глюкозы</span><b class="warn" id="taskGlucose">⚠ Заполнить</b></div>
+</div>
+<div class="card"><h3 style="margin-top:0">Важное напоминание</h3><p class="muted">DOGGLU помогает собирать данные и готовить их для обсуждения с ветеринаром.</p><div class="notice">Не изменяйте лечение самостоятельно. При вопросах обращайтесь к ветеринарному врачу.</div></div>
+</div>
+</section>
+
+<section id="diary" class="page">
+<div class="top"><div><div class="eyebrow">Наблюдение</div><h1>Дневник</h1></div><button class="primary" onclick="openQuick()">＋ Быстрая запись</button></div>
+<div class="two"><div class="card"><h3>Новая запись</h3><form id="entryForm"><div class="formgrid">
+<div class="field"><label>Дата и время</label><input id="date" type="datetime-local" required></div>
+<div class="field"><label>Тип</label><select id="type"><option>Глюкоза</option><option>Питание</option><option>Вода</option><option>Активность</option><option>Самочувствие</option><option>Вес</option><option>Терапия</option></select></div>
+<div class="field"><label>Значение</label><input id="value" placeholder="Например: 8,4"></div>
+<div class="field"><label>Заметка</label><input id="note" placeholder="Что важно запомнить?"></div>
+</div><button class="primary" type="submit">Сохранить запись</button></form></div>
+<div class="card"><h3>Последние записи</h3><div id="entries"></div></div></div>
+</section>
+
+<section id="glucose" class="page">
+<div class="top"><div><div class="eyebrow">Мониторинг</div><h1>Глюкоза</h1></div><button class="primary" onclick="quickGlucose()">＋ Добавить измерение</button></div>
+<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><div><h3 style="margin:0">Динамика показателей</h3><div class="muted">Последние измерения из дневника</div></div><span class="pill">ммоль/л</span></div><div class="chartWrap"><canvas id="chart" width="1000" height="330"></canvas></div></div>
+<div class="grid"><div class="card stat"><div class="label">Последнее измерение</div><strong id="gLast">—</strong><span class="muted">ммоль/л</span></div><div class="card stat"><div class="label">Среднее</div><strong id="gAvg">—</strong><span class="muted">ммоль/л</span></div><div class="card stat"><div class="label">Измерений</div><strong id="gCount">0</strong></div><div class="card stat"><div class="label">Период</div><strong>7</strong><span class="muted">дней</span></div></div>
+</section>
+
+<section id="symptoms" class="page">
+<div class="top"><div><div class="eyebrow">Ежедневное наблюдение</div><h1>Самочувствие</h1></div></div>
+<div class="card"><h3>Что вы заметили сегодня?</h3><p class="muted">Отметьте все подходящие варианты. Это наблюдение, а не диагноз.</p><div class="actions" style="margin:18px 0"><button class="secondary symptom" data-s="Повышенная жажда">💧 Повышенная жажда</button><button class="secondary symptom" data-s="Частое мочеиспускание">🚽 Частое мочеиспускание</button><button class="secondary symptom" data-s="Повышенный аппетит">🍖 Повышенный аппетит</button><button class="secondary symptom" data-s="Вялость">😴 Вялость</button><button class="secondary symptom" data-s="Нормальная активность">🐕 Нормальная активность</button><button class="secondary symptom" data-s="Нормальное самочувствие">😊 Нормальное самочувствие</button></div><div class="card" style="background:#f8fbfb;box-shadow:none"><b>Сегодня отмечено:</b><p id="symptomResult" class="muted">Ничего не отмечено.</p></div></div>
+</section>
+
+<section id="profile" class="page">
+<div class="top"><div><div class="eyebrow">Мой питомец</div><h1>Профиль собаки</h1></div><button class="primary" onclick="saveProfile()">Сохранить профиль</button></div>
+<div class="two"><div class="card"><div class="profileHero"><div class="bigDog" id="bigDog">🐕</div><div><h2 id="profilePreviewName" style="margin:0">Барни</h2><div class="muted">Предпросмотр профиля</div></div></div><hr style="border:0;border-top:1px solid #edf2f2;margin:22px 0"><h3>Выберите внешность</h3><div class="dogOptions" id="dogOptions"></div></div>
+<div class="card"><h3>Данные питомца</h3><div class="field"><label>Имя</label><input id="pName" value="Барни"></div><div class="formgrid"><div class="field"><label>Возраст</label><input id="pAge" value="8"></div><div class="field"><label>Вес, кг</label><input id="pWeight" value="18,4"></div></div><div class="field"><label>Статус</label><select id="pStatus"><option>Сахарный диабет</option><option>Наблюдение</option><option>Другое</option></select></div><div class="notice">Информация в профиле нужна для удобного ведения дневника и формирования отчёта.</div></div></div>
+</section>
+
+<section id="report" class="page">
+<div class="top"><div><div class="eyebrow">Для ветеринарного врача</div><h1>Отчёт</h1></div><div class="actions"><button class="secondary" onclick="showPage('diary')">← В дневник</button><button class="primary" onclick="window.print()">Печать / PDF</button></div></div>
+<div class="card reportPrint"><div class="profileHero"><div class="bigDog" id="reportDog">🐕</div><div><h2 id="reportName" style="margin:0">Барни</h2><div class="muted" id="reportMeta">8 лет · 18,4 кг · сахарный диабет</div></div></div><hr style="border:0;border-top:1px solid #edf2f2;margin:22px 0"><div class="grid"><div><div class="label">Измерений глюкозы</div><h2 id="rCount">0</h2></div><div><div class="label">Последняя глюкоза</div><h2 id="rLast">—</h2></div><div><div class="label">Средняя глюкоза</div><h2 id="rAvg">—</h2></div><div><div class="label">Последний симптом</div><h2 id="rSymptom" style="font-size:18px">—</h2></div></div><h3>Заметки владельца</h3><p id="rNotes" class="muted">Пока нет заметок.</p><div class="notice">Этот отчёт структурирует наблюдения владельца и предназначен для обсуждения с ветеринарным врачом. Он не является диагнозом или назначением лечения.</div></div>
+</section>
+</main></div>
+
+<div id="toast" class="toast"></div>
+<div id="modalBack" class="modalBack hidden"><div class="modal"><div style="display:flex;justify-content:space-between"><h2 style="margin:0">Быстрая запись</h2><button class="ghost" onclick="closeModal()">✕</button></div><p class="muted">Добавьте важное наблюдение за несколько секунд.</p><div class="actions"><button class="secondary" onclick="quickType('Глюкоза')">📊 Глюкоза</button><button class="secondary" onclick="quickType('Питание')">🍗 Питание</button><button class="secondary" onclick="quickType('Вода')">💧 Вода</button><button class="secondary" onclick="quickType('Активность')">🚶 Активность</button><button class="secondary" onclick="quickType('Самочувствие')">🩺 Самочувствие</button></div></div></div>
+
+<script>
+const DOGS=[["🐕","Лабрадор"],["🐩","Пудель"],["🐕‍🦺","Овчарка"],["🦮","Ретривер"],["🐶","Мопс"],["🐕","Йоркширский терьер"],["🐺","Хаски"],["🐕","Другая собака"]];
+const KEY="dogglu_super_v1";
+let state=JSON.parse(localStorage.getItem(KEY)||"null")||{logged:false,owner:"",email:"",profile:{name:"Барни",age:"8",weight:"18,4",status:"Сахарный диабет",dog:"🐕",breed:"Лабрадор"},entries:[],symptoms:[]};
+function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+function $(id){return document.getElementById(id)}
+function toast(t){let x=$("toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),2200)}
+function login(){let n=$("loginName").value.trim(),e=$("loginEmail").value.trim();if(!n||!e){toast("Заполните имя и email");return}state.logged=true;state.owner=n;state.email=e;save();boot();toast("Добро пожаловать в DOGGLU")}
+function logout(){state.logged=false;save();$("app").classList.add("hidden");$("auth").classList.remove("hidden")}
+function boot(){if(!state.logged)return;$("auth").classList.add("hidden");$("app").classList.remove("hidden");$("owner").textContent=state.owner;renderProfile();renderEntries();update();setDate();$("today").textContent=new Date().toLocaleDateString("ru-RU",{day:"numeric",month:"long"})}
+function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));$(id).classList.add("active");document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));if(id==="glucose")drawChart();if(id==="report")update();window.scrollTo({top:0,behavior:"smooth"})}
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>showPage(b.dataset.page));
+function setDate(){$("date").value=new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16)}
+$("entryForm").onsubmit=e=>{e.preventDefault();state.entries.unshift({date:$("date").value,type:$("type").value,value:$("value").value.trim(),note:$("note").value.trim()});save();e.target.reset();setDate();renderEntries();update();drawChart();toast("Запись сохранена ✓")}
+function renderEntries(){$("entries").innerHTML=state.entries.length?state.entries.slice(0,12).map((x,i)=>`<div class="entry"><div><b>${x.type}</b><div class="muted">${new Date(x.date).toLocaleString("ru-RU")}</div>${x.note?`<div style="margin-top:3px">${x.note}</div>`:""}</div><div style="text-align:right"><span class="pill">${x.value||"без значения"}</span><button class="ghost" onclick="removeEntry(${i})" title="Удалить">✕</button></div></div>`).join(""):"<p class='muted'>Записей пока нет. Добавьте первую.</p>"}
+function removeEntry(i){state.entries.splice(i,1);save();renderEntries();update();drawChart();toast("Запись удалена")}
+function glucose(){return state.entries.filter(x=>x.type==="Глюкоза"&&parseFloat((x.value||"").replace(",","."))).map(x=>({...x,n:parseFloat(x.value.replace(",","."))})).reverse()}
+function update(){let g=glucose(),last=g.at(-1)?.n,avg=g.length?g.reduce((a,b)=>a+b.n,0)/g.length:null;let sym=state.symptoms.at(-1)||"Норма";$("homeGlucose").textContent=last??"—";$("gLast").textContent=last??"—";$("gAvg").textContent=avg?avg.toFixed(1):"—";$("gCount").textContent=g.length;$("homeWeight").textContent=state.profile.weight;$("homeSymptom").textContent=sym;$("rCount").textContent=g.length;$("rLast").textContent=last??"—";$("rAvg").textContent=avg?avg.toFixed(1):"—";$("rSymptom").textContent=sym;$("homeProgress").textContent=(3+Math.min(g.length,1)+Math.min(state.symptoms.length,1))+"/5";$("taskGlucose").textContent=g.length?"✓ Выполнено":"⚠ Заполнить";$("taskGlucose").className=g.length?"ok":"warn";$("taskSymptom").textContent=state.symptoms.length?"✓ Выполнено":"⚠ Заполнить";$("taskSymptom").className=state.symptoms.length?"ok":"warn";let notes=state.entries.filter(x=>x.note).slice(0,6).map(x=>x.note);$("rNotes").textContent=notes.length?notes.join(" · "):"Пока нет заметок."}
+function drawChart(){let c=$("chart");if(!c)return;let ctx=c.getContext("2d"),d=glucose().slice(-12);ctx.clearRect(0,0,c.width,c.height);let W=c.width,H=c.height,p={l:55,r:25,t:25,b:45};ctx.strokeStyle="#dfeceb";ctx.lineWidth=1;for(let i=0;i<5;i++){let y=p.t+i*(H-p.t-p.b)/4;ctx.beginPath();ctx.moveTo(p.l,y);ctx.lineTo(W-p.r,y);ctx.stroke()}if(!d.length){ctx.fillStyle="#71888d";ctx.font="18px Arial";ctx.fillText("Добавьте измерения в дневнике — здесь появится график.",p.l,150);return}let vals=d.map(x=>x.n),min=Math.max(0,Math.floor(Math.min(...vals)-1)),max=Math.ceil(Math.max(...vals)+1);ctx.fillStyle="#71888d";ctx.font="12px Arial";for(let i=0;i<5;i++){let v=min+(max-min)*(4-i)/4,y=p.t+i*(H-p.t-p.b)/4;ctx.fillText(v.toFixed(0),15,y+4)}ctx.strokeStyle="#087f91";ctx.lineWidth=4;ctx.lineCap="round";ctx.lineJoin="round";ctx.beginPath();d.forEach((x,i)=>{let px=p.l+i*(W-p.l-p.r)/Math.max(1,d.length-1),py=H-p.b-(x.n-min)/(max-min)*(H-p.t-p.b);i?ctx.lineTo(px,py):ctx.moveTo(px,py)});ctx.stroke();d.forEach((x,i)=>{let px=p.l+i*(W-p.l-p.r)/Math.max(1,d.length-1),py=H-p.b-(x.n-min)/(max-min)*(H-p.t-p.b);ctx.fillStyle="#fff";ctx.beginPath();ctx.arc(px,py,7,0,Math.PI*2);ctx.fill();ctx.fillStyle="#087f91";ctx.beginPath();ctx.arc(px,py,4,0,Math.PI*2);ctx.fill();ctx.fillStyle="#71888d";ctx.font="11px Arial";ctx.fillText(new Date(x.date).toLocaleDateString("ru-RU",{day:"2-digit",month:"2-digit"}),px-16,H-15)})}
+document.querySelectorAll(".symptom").forEach(b=>b.onclick=()=>{state.symptoms.push(b.dataset.s);save();$("symptomResult").textContent=state.symptoms.slice(-5).join(" · ");b.classList.add("selected");update();toast("Наблюдение добавлено")});
+function renderProfile(){$("pName").value=state.profile.name;$("pAge").value=state.profile.age;$("pWeight").value=state.profile.weight;$("pStatus").value=state.profile.status;$("profilePreviewName").textContent=state.profile.name;$("bigDog").textContent=state.profile.dog;$("heroDog").textContent=state.profile.dog;$("heroName").textContent=state.profile.name;$("heroMeta").textContent=`${state.profile.age} лет · ${state.profile.weight} кг · ${state.profile.status}`;$("miniDog").textContent=state.profile.dog;$("miniName").textContent=state.profile.name;$("reportDog").textContent=state.profile.dog;$("reportName").textContent=state.profile.name;$("reportMeta").textContent=`${state.profile.age} лет · ${state.profile.weight} кг · ${state.profile.status}`;$("dogOptions").innerHTML=DOGS.map((d,i)=>`<button class="dogChoice ${state.profile.dog===d[0]?"selected":""}" onclick="chooseDog(${i})"><span class="dogEmoji">${d[0]}</span><b>${d[1]}</b></button>`).join("")}
+function chooseDog(i){state.profile.dog=DOGS[i][0];state.profile.breed=DOGS[i][1];renderProfile();toast("Внешность выбрана")}
+function saveProfile(){state.profile.name=$("pName").value.trim()||"Барни";state.profile.age=$("pAge").value||"8";state.profile.weight=$("pWeight").value||"18,4";state.profile.status=$("pStatus").value;save();renderProfile();update();toast("Профиль сохранён ✓")}
+function openQuick(){$("modalBack").classList.remove("hidden")}function closeModal(){$("modalBack").classList.add("hidden")}function quickType(t){closeModal();showPage("diary");$("type").value=t;$("value").focus()}function quickGlucose(){showPage("diary");$("type").value="Глюкоза";$("value").focus()}
+if(state.logged)boot();else{$("date").value="";renderProfile()}
+</script>
+</body></html>
